@@ -1,7 +1,0 @@
--rw-r--r--  1 andresnunez  staff     0B Jun 25 23:27 INDICE.md
--rw-r--r--  1 andresnunez  staff     0B Jun 25 23:27 README.md
--rw-r--r--  1 andresnunez  staff   375B Jun 26 22:37 out.txt
-drwxr-xr-x  2 andresnunez  staff    64B Jun 25 23:32 media
-drwxr-xr-x  2 andresnunez  staff    64B Jun 25 23:37 posts
-drwxr-xr-x  4 andresnunez  staff   128B Jun 26 21:46 handbook
-total 8
