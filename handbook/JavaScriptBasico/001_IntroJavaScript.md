@@ -1,13 +1,5 @@
 # Curso básico de JavaScript
 
-## Conceptos y anotaciones
-
-## Index
-
-- ¿Qué es JavaScript?
-- Elementos de un lenguaje de programación
-- Variables
-
 ## ¿Qué es JavaScript?
 
 Dinamismo en las páginas web, nace en los 90's como respuesta a las páginas estáticas.
