@@ -70,10 +70,6 @@ function saluda(){
 
 Esto está relacionado don la característica de JavaScript de **débilmente tipado**, existen dos tipos de coerción.
 
-### Coerción explicita
-
-Se especifíca el cambio de tipo de valor de una variable previamente declarada e inicializada.
-
 ### Coerción implicita
 
 Sucede cuando el lenguaje interviene y cambia el tipo de valor automáticamente.
@@ -87,6 +83,86 @@ Ejemplo
 2 * "7" //14
 0 + true //1
 0 - false //-1
+```
+
+### Coerción explicita
+
+Se especifíca el cambio de tipo de valor de una variable previamente declarada e inicializada.
+
+```Javascript
+var a = 20;
+var b = a + "";
+typeof b
+//"string"
+```
+
+Se puede hacer la coerción sin concatenar, usando la función ```String()```. También existe el método ```Number()``` y ```Boolean```.
+
+```Javascript
+var a = 20;
+var b = String(a);
+```
+
+## Truthy and Falsy
+
+En pocas palabras, estos valores sirven para validar ciertas expresiones condicionales.
+
+```Javascript
+Boolean(); //false
+Boolean(0) ;//false
+Boolean(null); //false
+Boolean(NaN); //false
+Boolean(undefined); //false
+Boolean(false); //false
+Boolean(""); //false
+```
+
+```Javascript
+Boolean(" "); //true
+Boolean(1) ;//true
+Boolean([]); //true
+Boolean({}); //true
+Boolean(function(){}); //true
+Boolean(true); //true
+```
+
+## Operadores
+
+### Operadores binarios
+
+```Javascript
++  //suma
+-  //resta
+*  //multiplicación
+/  //división
+%  //módulo
+** //potencia
+```
+
+### Operadores lógicos
+
+```Javascript
+! //negación de un valor
+&& //AND
+|| //OR
+```
+
+### Operadores de comparación
+
+```Javascript
+== //comparación de valor
+=== //comparación de valor y tipo
+> //mayor que
+< //menor que
+>= //mayor o igual
+<= //menor o igual
+```
+
+- Ejemplo
+
+```Javascript
+3 == "3" //true
+3 === "3" //false
 ```
 
 **from**: 🇨🇴  
