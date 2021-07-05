@@ -1,0 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root{
+    --sections-fg-color-1: #4C5C78;
+    --sections-icon-color: #F68554;
+    --form-submit-fg-color: #FFF;
+    --header-fg-color: #2D3142;
+    --sections-bg-color: #C3C6C6
+}
+
+
+
+.header{
+    margin-top: 1%;
+    padding: 0% 2%;
+    color: var(--header-fg-color);
+}
+
+.sections-grid{
+    display: grid;
+    grid-gap: 2%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    padding: 2%;
+    height: 20em;
+}
+
+.section{
+    background-color: var(--sections-bg-color);
+    border-radius: 0.6em;
+    padding: 0.5em 2em;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
+}
+
+.section-title{
+    grid-row: 1;
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+}
+
+.section-title i, img{
+    font-size: 2em;
+    color: var(--sections-icon-color);
+}
+
+.section-result{
+    grid-row: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.form-in:focus{
+    border: 2px solid var(--sections-icon-color);
+    outline: none;
+}
+
+.section-form{
+    grid-row: 3 / 5;
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.form-in-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 3em;
+}
+
+.form-in-group{
+    display: flex;
+    justify-content: center;
+}
+
+.form-submit-container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 1.6em;
+}
+
+.section-form .form-submit{
+    background-color: var(--sections-icon-color);
+    color: var(--form-submit-fg-color);
+    width: 50%;
+    font-size: 16px;
+    border-radius: 0.4em;
+    border: 2px solid var(--sections-icon-color);
+    transition: all 400ms ease-in-out;
+}
+
+.form-submit:hover {
+    border-color: var(--form-submit-fg-color);
+}
+
+.section-cuadrado{
+    grid-column: 1;
+    grid-row: 1 / 7;
+}
+
+.section-circulo{
+    grid-column: 2;
+    grid-row: 1 / 7;
+}
+
+.section-triangulo{
+    grid-column: 3;
+    grid-row: 1 / 7;
+}
+
+.section h2, label, p{
+    color: var(--sections-fg-color-1);
+}
