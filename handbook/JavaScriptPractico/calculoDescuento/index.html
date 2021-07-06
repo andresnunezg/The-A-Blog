@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="styles.css" type="text/css"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
+        <title>Descuentos</title>
+    </head>
+    <body>
+        <script src="./descuentos.js" type="text/javascript" ></script>
+        <main>
+            <header class="header">
+                <h1>Descuentos &nbsp;<span class="material-icons-outlined">local_offer</span></h1>
+            </header>
+            <form class="form" action="">
+                <div class="form-field field-precio">
+                    <label class="field-label" for="in-precio">Precio</label>
+                    <input class="field-input" type="number" id="in-precio" min="0"/>
+                </div>
+                <div class="form-field field-descuento">
+                    <label class="field-label" for="in-descuento">Descuento</label>
+                    <input class="field-input" type="number" id="in-descuento" min="0" max="100"/>
+                </div>
+                <div class="form-field field-cupon">
+                    <label class="field-label" for="in-cupon">Cupón</label>
+                    <input class="field-input" type="text" id="in-cupon"/>
+                </div>
+                <button class="form-button" type="button" onclick="calcularDescuento()">Calcular</button>
+            </form>
+            <section class="discount-container">
+                <div class="discount-field saving-result">
+                    <span class="discount-icon material-icons-outlined">savings</span>
+                    <p class="discount-label">Ahorro</p>
+                    <p class="discount-result" id="saving"></p>
+                </div>
+                <div class="discount-field discount-result">
+                    <span class="discount-icon material-icons-outlined">paid</span>
+                    <p class="discount-label">Nuevo precio</p>
+                    <p class="discount-result" id="new-price"></p>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

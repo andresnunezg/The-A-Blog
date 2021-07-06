@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    color: #000;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*gradient background*/
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+}
+
+main{
+    width: fit-content;
+    height: 25em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*glass*/
+    background: rgba( 0, 0, 0, 0.05 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 1.0px );
+    -webkit-backdrop-filter: blur( 1.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.header h1, span{
+    font-family: 'Bebas Neue', cursive;
+    color: #FFF;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 10em;
+    width: 20em;
+}
+
+.form-field{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr
+}
+
+.field-label{
+    grid-column: 1 / 4;
+    cursor: pointer;
+}
+
+.field-input{
+    grid-column: 4 / 11;
+    transition: 400ms;
+    padding-left: 0.5em;
+    border-radius: 3px;
+    border: 2px solid transparent;
+}
+
+.field-input:focus{
+    border: 2px solid #8EC5FC;
+    outline: none;
+}
+
+.form-button{
+    cursor: pointer;
+    border-radius: 3px;
+    height: 2em;
+    border: 2px solid transparent;
+    transition: all 400ms ease-in-out;
+}
+
+.form-button:hover{
+    border: 2px solid #8EC5FC;
+}
+
+.discount-container{
+    width: 20em;
+    height: 6em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.discount-field{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr;
+}
+
+.discount-icon{
+    grid-row: 1;
+    grid-column: 1;
+    text-align: left;
+}
+
+.discount-label{
+    grid-row: 1;
+    grid-column: 2 / 5;
+}
+
+.discount-result{
+    grid-row: 1;
+    grid-column: 6 / 11;
+    text-align: right;
+    overflow-x: scroll;
+}
