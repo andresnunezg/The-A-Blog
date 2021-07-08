@@ -19,12 +19,11 @@ body{
 }
 
 main{
-    padding: 2.5em;
-    width: fit-content;
+    padding: 2em;
+    width: 34em;
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 1.0px );
-    -webkit-backdrop-filter: blur( 1.0px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
@@ -47,4 +46,54 @@ main{
 .form-list{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    width: 30em;
+    height: 6em;
+}
+
+#list{
+    border-radius: 3px;
+    border: 2px solid transparent;
+    transition: 200ms;
+}
+
+#list:focus{
+    border: 2px solid #Ebc2eb;
+    outline: none;
+}
+
+#button{
+    height: 1.8em;
+    border-radius: 3px;
+    background-color: transparent;
+    border: 2px solid #Ebc2eb;
+    color: #FFF;
+    transition: 200ms ease;
+}
+
+#button:hover{
+    border: 2px solid #FFF;
+}
+
+.results{
+    height: 8em;
+    padding-top: 0.8em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.result{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr;
+}
+
+.res-label{
+    grid-column: 1 / 5;
+}
+
+.res-result{
+    grid-column: 6 / 11;
+    overflow-x: scroll;
 }

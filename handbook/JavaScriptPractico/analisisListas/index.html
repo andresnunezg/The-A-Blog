@@ -16,24 +16,26 @@
             </header>
             <form class="form-list">
                 <label for="list">Ingrese los elementos de la lista separados por comas sin espacios</label>
-                <input type="text" name="" id="list" placeholder="1,2,3,4,5"/>
-                <button type="button" onclick="analisisLista()">Listo</button>
+                <input type="text" id="list" placeholder="1,2,3,4,5"/>
+                <button id="button" type="button" onclick="analisisLista()">Listo</button>
             </form>
-            <div class="resultado">
-                <h3>Lista ordenada</h3>
-                <p id="list-result"></p>
-            </div>            
-            <div class="resultado">
-                <h3>Media</h3>
-                <p id="avg-result"></p>
-            </div>
-            <div class="resultado">
-                <h3>Mediana</h3>
-                <p id="med-result"></p>
-            </div>
-            <div class="resultado">
-                <h3>Moda</h3>
-                <p id="mod-result"></p>
+            <div class="results">
+                <div class="result">
+                    <h4 class="res-label">Lista ordenada</h4>
+                    <p class="res-result" id="list-result"></p>
+                </div>            
+                <div class="result">
+                    <h4 class="res-label">Media</h4>
+                    <p class="res-result" id="avg-result"></p>
+                </div>
+                <div class="result">
+                    <h4 class="res-label">Mediana</h4>
+                    <p class="res-result" id="med-result"></p>
+                </div>
+                <div class="result">
+                    <h4 class="res-label">Moda</h4>
+                    <p class="res-result" id="mod-result"></p>
+                </div>
             </div>
         </main>
     </head>
