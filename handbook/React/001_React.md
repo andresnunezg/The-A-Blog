@@ -195,3 +195,76 @@ ReactDOM.render(<elementA
 Las paginas en react siguen siendo componentes, que a su vez tienen otros componentes internamente. Al igual que los componentes, estas se configuran en un directorio propio, en la ruta ```src/pages/``` que facilite le lectura del proyecto. Las páginas se importan igual que los componentes.
 
 ## Enlazando Eventos
+
+### ¿Qué son los eventos?
+
+React dispone de eventos, cada vez que recibe información en un input, se obtiene un evento **onChange** y para manejarlos se usa un método de la clase **this.handleChange**.
+Los elementos **button** también cuentan con el evento **onClick**, los botones dentro de los formularios por defecto son de tipo **submit**, para cambiar esto de modifica a tipo **button** o manejándolo desde el formulario con el evento **onSubmit**
+
+```javascript
+<input onChange={this.handleChange} type="text" id="firstName" name="firstName"/>
+```
+
+De este modo se "monitorean" los cambios que el usuario haga sobre el input, este método ```handleChange()``` debe ser declarado previo al método ```render()```.
+
+```javascript
+handleChange = (e) => {
+        console.log({
+            name: e.target.name,
+            value: e.target.value
+        });
+    }
+```
+
+Los botones usan el método ```handleClick```, estos no tendrán atributos como nombre o valor del evento.
+
+```html
+<button type="button" onClick={this.handleClick}>Save</button>
+```
+
+Otra menera de prevenir que la página se recargue al enviar formularios es con la propiedad ```onSubmit``` de los ```form```.
+
+```html
+<form onSubmit={this.handleSubmit}>
+```
+
+Y en el método del evento:
+
+```javascript
+handleSubmit = (e) => {
+    e.preventDefault();
+}
+```
+
+## Manejo de estados
+
+Es una forma de que los componentes creen su propia información sin necesidad de que los props se hagan explicitos, esta información puede ser consumida por otros componentes de manera unidireccional, es decir, que los elementos que reciben la información no pueden modificar la información original.
+
+### ¿Qué es un estado (state)?
+
+El state de React es un objeto que deriva de la clase React Component, que puede definirse a sí mismo como un objeto que almacena las propiedades observables que controlan el comportamiento del componente.
+
+### prop Value
+
+Para evitar la duplicación de estados modifica la propiedad value dentro de las etiquetas html
+
+```javascript
+value={this.state.stateName}
+```
+
+Hay que tener en cuenta que el objeto de estados debe ser inicializado dentro del componente
+
+```javascript
+state = {};
+```
+
+Se dice que un estado es controlado cuando en el objeto ```states``` se predetermina
+
+```javascript
+state = {firstName: 'Máximo décimo meridio comandante de los ejercitos del norte',};
+```
+
+### Levantamiento del estado
+
+Es una técnica de React que pone el estado en una localización donde estos se puedan pasar como props a otros componentes. Lo ideal y buena práctica es poner estos estados en el lugar más cercano a todos los componentes que compartirán la información.
+Cada vez que haya un cambio en el estado de un componente o en las props que recibe un componente, este y sus descendientes se vuelven a renderizar, esta es la parte reactiva de React.
