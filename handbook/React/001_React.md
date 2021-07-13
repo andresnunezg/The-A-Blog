@@ -268,3 +268,48 @@ state = {firstName: 'Máximo décimo meridio comandante de los ejercitos del nor
 
 Es una técnica de React que pone el estado en una localización donde estos se puedan pasar como props a otros componentes. Lo ideal y buena práctica es poner estos estados en el lugar más cercano a todos los componentes que compartirán la información.
 Cada vez que haya un cambio en el estado de un componente o en las props que recibe un componente, este y sus descendientes se vuelven a renderizar, esta es la parte reactiva de React.
+
+## React Router
+
+Las aplicaciones que se trabajan en React son llamadas **single pages apps**, es gracias a **React Router**, una librería _Open Source_, que se pueden hacer aplicaciones **multi pages**.
+
+### Single page apps (SPA)
+
+Aplicaciones modernas que mejoran le experiencia de usuario ya que cargan una sola página HTML, y cualquier aplicación la hacen reescrbiendo el HTML preexistente.
+
+### Multi page apps
+
+Cada página implica una petición al servidor. La respuesta tiene usualmente todo el contenido de la página.
+
+### React Router (v4)
+
+Ofrece las herramientas para hacer SPA facilmente con cuatro componentes principales:
+
+- Browser router: Lo que esté dentro de este componente funcionará como una SPA y habilitará a los demás componentes de React Router.
+
+```javascript
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+export default class App extends React.Component {
+    render () {
+        return (
+            <BrowserRouter>
+
+            </BrowserRouter>
+        );
+    }
+}
+```
+
+- Route: Representa una dirección de internet que recibe como props: 
+> el **path** es donde se va a renderizar el componente
+> Un **component**, usualmente una página, este a su vez recibe tres props: ```match```, ```history``` y ```location```, los tres proveen información sobre la dirección de internet en la que está ahora mismo.
+
+```javascript
+<Router path="/" component={Home} />
+```
+
+- Switch: Dentro de Switch sólo se establecen elementos Route, sirve para asegurarse que sólo una Route sea renderizada, es analogo en comportamiento a los **switch case**.
+
+
+- Link: Toma el lugar del elemento <a>, ya que este hará que la aplicación cargue por completo nuevamente, con link cambiamos de dirección sin que la aplicación se vaya, el link actualiza la URL con Route
