@@ -312,4 +312,32 @@ export default class App extends React.Component {
 - Switch: Dentro de Switch sólo se establecen elementos Route, sirve para asegurarse que sólo una Route sea renderizada, es analogo en comportamiento a los **switch case**.
 
 
-- Link: Toma el lugar del elemento <a>, ya que este hará que la aplicación cargue por completo nuevamente, con link cambiamos de dirección sin que la aplicación se vaya, el link actualiza la URL con Route
+- Link: Toma el lugar del elemento <a>, ya que este hará que la aplicación cargue por completo nuevamente, con link cambiamos de dirección sin que la aplicación se vaya, el link actualiza la URL con Route. A diferencia de ```href```, link tiene la propiedad ```to```.
+
+#### Instalación
+
+La versión para navegadores de react router se instala con el siguiente comando
+
+```zsh
+npm install react-router-dom
+```
+
+### Aplicar React Router
+
+En ```index.js``` se exporta el componente ``App``, que debe ser creado en la carpeta ```/components```, allí es donde se aplica el ```<BroserRouter />```, previamente importado como ```import { BrowserRouter } from 'react-router-dom';```
+
+## React Fragment
+
+Todos los componentes en React de manera normal, cuentan con un ```<div>``` padre que contiene el resto del JSX, pero esto es código redundante que se puede evitar con ```<React.Fragment>```, ya que es una herramienta que renderiza varios componentes hijos, con esto se obtiene código limpio, React Fragment no se renderiza en el navegador
+
+## Nota: Componentes sin estado
+
+Aquellos componentes que no cuentan con un estado, no se declaran como una clase extensión de ```React.Component```, sino que se renderizan así:
+
+```javascript
+funcion NameFunction() {
+    return (
+        
+    )
+}
+```
