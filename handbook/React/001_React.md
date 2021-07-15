@@ -341,3 +341,145 @@ funcion NameFunction() {
     )
 }
 ```
+
+# Ciclo de vida de los componentes
+
+## Montaje
+
+Representa el momento donde se inserta el código del componente en el DOM
+
+### Métodos
+
+Un componente pasa principalmente por tres fases, montaje actualización y desmontaje, a su vez cada una de estas fases cuenta con métodos propios.
+
+- constructor
+
+Este método se ejecuta cuando se instancia un componente. Permite definir el estado inicial del componente, hacer bind de métodos y definir propiedades internas en las que se pueden guardar datos diferentes.
+
+- componentWillMount
+
+Este método se ejecuta cuando el componente se está por renderizar, en este punto se puede modificar el estado del componente sin causar una actualización y que no se se renderice nuevamente.
+
+- render
+
+En esta última fase de montaje, se toman las propiedades, estados y contexto para generar la UI inicial del componente.
+
+- componentDidMount
+
+## Actualización
+
+Ocurre cuando los props o estados del componente cambian.
+
+### Métodos
+
+- render
+- componenteDidUpdate
+
+```javascript
+componentDidUpdate(prevProps, prevState) {
+    console.log({
+        prevProps: prevProps,
+        prevState: prevState,
+    });
+    console.log({
+        props: this.props,
+        state: this.state,
+    });
+}
+```
+
+## Desmontaje
+
+Es cuando el componente sale de escena, cuando desaparece de la pantalla, por ejemplo al pasar de una página a otra
+
+### Método
+
+- componentWillUnmount
+
+## API
+
+### Llamadas a una API
+
+Las llamadas a una API tienen tres estados:
+
+- Loading: la petición se envió y la app se encuentra esperando una respuesta
+- Error: la petición falló, esto debe manejarse de manera amigable con el usuario
+- Datos: la petición se completó, si hay datos se deben presentar, si no los hay se debe indicar
+
+### Llamadas a una API con ReactJS
+
+Con la siguiente llamada a una API se garantiza que se manejarán todos los estados, loading, error y data.
+
+- Primero se determinan los estados dentro del componente
+- Se llama a la función que pide los datos (GET), cuando se haga el componente esté listo
+- mediante el try / catch se maneja los estados de error y exito
+
+```javascript
+state = {
+    loading: true,
+    error: null,
+    nextPage: 1,
+    data: {
+        results: []
+    }
+};
+
+componentDidMount(){
+    this.fetchData();
+}
+
+fetchData = async() => {
+    this.setState({loading:true, error:null})
+    try{
+        const response = await fetch(`url?page=${this.state.nextPage}`);
+        const data = await response.json();
+        this.setState({
+            loading: false,
+            data: {
+                info: info,
+                results: [].concat(
+                    this.state.data.results,
+                    data.results
+                )
+            },
+            nextPage: this.state.nextPage + 1
+        });
+    } catch(error) {
+        this.setState({
+            loading: false,
+            error: error,
+        })
+    }
+};
+```
+
+Mientras se completa la llamada, es recomendable mostrarle al usuario un componente de carga validando si el estado de carga es ```true```
+
+```jsx
+{this.state.loading && (
+    <Loader />
+)}
+```
+
+Al igual que si esta falla, un método simple para mostrar es el siguiente bloque dentro del método ```render()```
+
+```jsx
+if(this.status.error) {
+    return `Error: ${this.status.error.message}`;
+}
+```
+
+Si se desean cargar más datos, se garantiza que no haya estado de carga y se solicita más datos llamando nuevamente a la API
+
+```jsx
+<button OnClick={() => this.fetchData()}>Load more</button>
+```
+
+La nueva llamada no reemplaza la información anterior ya que ```data.results``` se está concatenando
+
+```jsx
+results: [].concat(
+                    this.state.data.results,
+                    data.results
+                )
+```
