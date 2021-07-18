@@ -464,8 +464,8 @@ Mientras se completa la llamada, es recomendable mostrarle al usuario un compone
 Al igual que si esta falla, un método simple para mostrar es el siguiente bloque dentro del método ```render()```
 
 ```jsx
-if(this.status.error) {
-    return `Error: ${this.status.error.message}`;
+if(this.state.error) {
+    return `Error: ${this.state.error.message}`;
 }
 ```
 
@@ -483,3 +483,46 @@ results: [].concat(
                     data.results
                 )
 ```
+
+## Nota: buenas prácticas
+
+Como buena práctica en los imports, se importan primero las dependencias, después los componentes y finalmente estilos y assets, por ejemplo:
+
+```javascript
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import Badge from '../components/Badge';
+
+import HeroBg from '../images/HeroImgEdit.svg';
+import './styles/BadgeDetails.css'
+```
+
+La división de responsabilidades entre componentes presentacionales (UI) y componentes containers (lógica y manejo de datos) es común, recomendable y útil para el trabajo en equipo.
+
+## Portales
+
+Los portales funcionan de manera similar a ReactDOM.render(), que recibe dos parámetros, el primero es qué queremos renderizar y el segundo es dónde lo queremos renderizar.
+
+```javascript
+ReactDOM.createPortal({qué}, {dónde})
+```
+
+## Modales
+
+La técnica de usar componentes genéricos para crear uno nuevo especializado se llama composición
+
+## Hooks
+
+React Hooks permite que las funciones tengan features que solo tienen las clases, ya que las funciones por si solas no tienen manera de gestionar los ciclos de vida.
+
+- useState: para manejo de estados
+- useEffect: suscribir el componente a su ciclo de vida
+- useReducer: ejecutar un efecto basado en una acción
+
+### Custom Hook
+
+Crear Hooks personalizados a partir de los hook fundamentales, estos tiene su propia función y su nombre debe comensar con la palabra use, estos no pueden ser ejecutados condicionalmente.
+
+From: 🇨🇴
+by: Andrés Núñez.
