@@ -81,6 +81,16 @@ Estas propiedades reciben el nombre de la función que ejecuta el código que re
 
 Como buena práctica, los nombres de los eventos deben seguir la nomenclatura camelCase.
 
+## Configuración del proyecto
+
+Iniciar la gestión de dependencias con el comando
+
+```zsh
+npm init -y
+```
+
+Y creando la estructura de ```src```, ```public``` etc...
+
 ## Babel
 
 Babel es un transpilador de Javascript, lo que quiere decir que convierte el Javascript moderno a uno que sea comprensible para la gran mayoría de versiones de navegadores
@@ -89,8 +99,8 @@ Babel es un transpilador de Javascript, lo que quiere decir que convierte el Jav
 
 Instalación de los componenetes de babel requeridos en el entorno de desarrollo
 
-```javascript
-npm install @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
+```zsh
+npm install --save-dev @babel/core @babel/preset-env @babel/preset-react babel-loader
 ```
 
 El archivo de configuración en el proyecto se crea en la raiz del proyecto, a nivel de ```src``` o ```node_modules``` con el nombre ```.babelrc``` con el siguiente contenido:
@@ -116,4 +126,156 @@ Instalación como dependencia de desarrollo:
 npm install webpack webpack-cli html-webpack-plugin html-loader --save-dev
 ```
 
+A nivel de ```src``` se crea el archivo ```webpack.config.js```, que es el archivo de configuración de webpack, que tiene el siguiente contenido
 
+```javascript
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.html$/,
+        use: {
+          loader: 'html-loader',
+        },
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      filename: './index.html',
+    }),
+  ],
+};
+```
+
+Posteriormente en ```package.json``` se agrega el ```script```:
+
+```json
+"build": "webpack --mode production"
+```
+
+que se ejecuta mediante ```npm run build```
+
+
+## Webpack dev-server
+
+Webpack dev-server es una tecnología para visualizar los cambios en tiempo real
+
+```zsh
+npm install --save-dev webpack-dev-server
+```
+
+Luego en ```package.json```, se configura el script:
+
+```json
+"start": "webpack-dev-server --open --mode development"
+```
+
+La instrucción para correr el entorno de desarrollo local es:
+
+```zsh
+npm run start
+```
+
+## Sass
+
+Sass es un preprocesador de CSS, es decir que tiene una sintaxis más amigable pero se transformará en CSS normal
+
+## Instalación
+
+```zsh
+npm install mini-css-extract-plugin css-loader node-sass sass-loader --save-dev
+```
+
+## Configuración de Sass en webpack.config.js
+
+```javascript
+const path = require('path')
+const HtmlWebPackPlugin= require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+module.exports={
+    entry: './src/index.js',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js'
+    },
+    resolve:{
+        extensions: ['.js', '.jsx']
+    },
+    module:{
+        rules:[
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use:{
+                    loader: "babel-loader"
+                }
+            },
+            {
+                test: /\.html$/,
+                use:[
+                    {
+                        loader: "html-loader"
+                    }
+                ]
+            },
+            {
+                test: /\.(s*)css$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    'css-loader',
+                    'sass-loader'
+                ]
+            }
+        ]
+    },
+    plugins:[
+        new HtmlWebPackPlugin({
+            template: './public/index.html',
+            filename: './index.html'
+
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'assets/[name].css'
+        })
+    ]
+};
+```
+
+## ESlint
+
+Es un linter, herramienta, que permite seguir las buenas prácticas y estilos para el código, se encarga de revisar el código para indicar errores o posibles errores.
+
+### Instalación
+
+```zsh
+npm install --save-dev eslint babel-eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y
+```
+
+### Configuración
+
+A nivel de ```src``` se crea el archivo ```.eslintrc``` y se agrega el contenido disponible en:
+
+https://gist.github.com/gndx/60ae8b1807263e3a55f790ed17c4c57a
