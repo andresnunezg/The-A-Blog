@@ -80,3 +80,40 @@ Con React se puede responder a las interacciones de los usuarios con las propied
 Estas propiedades reciben el nombre de la función que ejecuta el código que responde a las interacciones de los usuarios.
 
 Como buena práctica, los nombres de los eventos deben seguir la nomenclatura camelCase.
+
+## Babel
+
+Babel es un transpilador de Javascript, lo que quiere decir que convierte el Javascript moderno a uno que sea comprensible para la gran mayoría de versiones de navegadores
+
+### Instalación y configuración
+
+Instalación de los componenetes de babel requeridos en el entorno de desarrollo
+
+```javascript
+npm install @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
+```
+
+El archivo de configuración en el proyecto se crea en la raiz del proyecto, a nivel de ```src``` o ```node_modules``` con el nombre ```.babelrc``` con el siguiente contenido:
+
+```javascript
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react"
+    ]
+}
+```
+
+## Webpack
+
+Webpack sirve para preparar los archivos a producción o para un entorno de desarrollo, mediante la compilación de estos, ya sea en javascript, HTML, CSS e incluso imágenes.
+
+### Instalación de Webpack
+
+Instalación como dependencia de desarrollo:
+
+```zsh
+npm install webpack webpack-cli html-webpack-plugin html-loader --save-dev
+```
+
+
