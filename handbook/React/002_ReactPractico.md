@@ -279,3 +279,32 @@ npm install --save-dev eslint babel-eslint eslint-config-airbnb eslint-plugin-im
 A nivel de ```src``` se crea el archivo ```.eslintrc``` y se agrega el contenido disponible en:
 
 https://gist.github.com/gndx/60ae8b1807263e3a55f790ed17c4c57a
+
+## Agregar imágenes con Webpack
+
+Mediante ```File loader``` se accede a las imágenes dentro del código.
+En el momento de la compilación Webpack guardará las imágenes en una nueva carpeta junto al código de producción y actualizará los componentes con los nuevos nombres y rutas de manera automática.
+
+### Instalación
+
+```bash
+npm install --save-dev file-loader
+```
+
+### Configuración
+
+En el archivo de configuración ```webpack.config.js``` se establece la siguiente nueva regla
+
+```javascript
+rules: [
+  {
+    test: /\.(png|gif|jpg|svg)$/,
+    use: [
+      {
+        loader: 'file-loader',
+        options: { name: 'assets/[hash].[ext]' },
+      }
+    ],
+  },
+],
+```
