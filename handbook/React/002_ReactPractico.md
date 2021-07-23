@@ -361,3 +361,30 @@ const Component = () => {
   );
 }
 ```
+
+## Custom Hooks
+
+React permite crear Hooks propios, separando así la lógica de los componentes.
+Es una buena práctica que dentro de la carpeta ```src```, a nivel de ```assets``` y ```components``` se cree la carpeta ```hooks```, compartiendo así los Hooks entre componentes, si se hace el Hook agnóstico de propiedades.
+
+- Estos deben empezar con la palabra ```use```: ```useAPI```, ```useMovie```, etc.
+- Si el Hook consume/interactua con dos elementos, por ejemplo ```title``` y ```setTitle```, el Hook debe devolver un array
+- Si el Hook consume/interactua con tres o más elementos, , por ejemeplo ```name``` ```setName```, ```lastName``` y ```setLastName```, etc... el Hook debe devolver un **objeto**.
+
+Documento ```useInitialState.js```
+
+```javascript
+import { useEstate, useEffect } from `react`;
+
+const useInitialState = (API) => {
+  const [ videos, setVideos ] = useState([]);
+  useEffect(() => {
+    fetch(API)
+      .then(response => response.json)
+      .then(data => setVideos(data));
+  }, []);
+  return videos;
+}
+
+export default useInitialState;
+```
