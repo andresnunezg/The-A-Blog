@@ -308,3 +308,56 @@ rules: [
   },
 ],
 ```
+
+## Fake API
+
+Para la simulación de una API construida a partir de un archivo JSON se utiliza JSON Server, el cúal se instala globalmente de la siguiente manera: 
+
+```bash
+npm install json-server -g
+```
+
+## React Hooks
+
+Los Hooks son una característica, a partir de React 16.8 que permite agregar estado y ciclo de vida a componentes creados como funciones.
+
+### useState
+
+Devuelve un array con dos elementos, cuya primera posición es el valor del estado y la segunda es una función que permite actualizar ese valor. El argumento que se envía a esta función es el valor por defecto del estado.
+
+```javascript
+import React from 'react';
+//import React, { useState } from 'react';
+
+const Component = () => {
+  const [name, setName] = React.useState('default name'); //useState('')
+
+  return <div>{name}</div>
+}
+```
+
+### useEffect
+
+Este Hook permite ejecutar código cuando el componente se encuentre en cualquiera de las tres fases (montaje, actualización y desmontaje), el primer argumento es una función que se ejecutará cuando React monte o actualice el componente. Esta función puede devolver otra función que se ejecute cuando el componente se desmonte. 
+El segundo argumento es un array donde se especifica qué propiedades deben cambiar para que React llame nuevamente al código. Si el componente cambia pero las props especificadas en el array no, la función no se ejecutará.
+
+Por defecto si no se envía un segundo argumento, React ejecutará la función de useEffect cada vez que este componente o sus padres se actualicen, si se envía un array vacío, useEffect sólo se ejecutará al montar y desmontar el componente.
+
+```javascript
+import React, { useState } from 'react';
+
+const Component = () => {
+  const [name, setName] = React.useState('default name');
+
+  useEffect(() => {
+    document.title = 'name';
+    return () => {
+      diocument.title = 'componente desmontado';
+    }
+  }, [name])
+
+  return (
+    <div>{name}</div>
+  );
+}
+```
