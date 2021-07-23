@@ -388,3 +388,34 @@ const useInitialState = (API) => {
 
 export default useInitialState;
 ```
+
+## Proptypes
+
+Los proptypes son una propiedad de los componentes para especificar el tipo de datos de las propiedades, si son de tipo String, Array, Número, etc... y además si es opcional u obligatorio.
+
+### Instalación de Proptypes
+
+```zsh
+npm install --save prop-types
+```
+
+### Uso de Proptypes
+
+```javascript
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const Component = ({firstName, lastName, age, list}) => {
+//...
+};
+
+Component.PropTypes = {
+  firstName: PropTypes.string,
+  lastName: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired,
+  list: PropTypes.array,
+};
+```
+
+From: 🇨🇴  
+by: Andrés Núñez.  
