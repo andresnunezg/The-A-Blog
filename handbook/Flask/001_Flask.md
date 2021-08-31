@@ -266,4 +266,52 @@ Se pueden integrar funcionalidades o elementos, tales como condicionales, for's,
 {% include '/ruta' %}
 ```
 
-**By: Andrés Núñez**  
+## Conexión a base de datos
+
+Si el gestor de la base de datos es MySQL, se instala el paquete flask-mysqldb con el comando `pip install flask-mysqldb` y en el fichero de python donde se necesite se importa con la siguiente línea `from flask_mysqldb import MySQL` y posteriormente en el mismo archivo se configura la conexión:
+
+```python
+from flask import Flask
+from flask_mysqldb import MySQL
+
+app = Flask(__name__)
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'main_db'
+
+mysql = MySQL(app)
+``` 
+
+### Querys a la base de datos
+
+En la ruta donde se interactua con la db, se crea un cursor instanciando al método `mysql.connection.cursor()`, a través del cual se ejecutan las consultas a las bases de datos con el método `cursor.execute({query})`, finalmente para guardar y ejecutar los cambios se ejecuta `cursor.connection.commit()`
+
+```python
+@app.route('/crear-usuario')
+def crear_usuario():
+    cursor = mysql.connection.cursor()
+    cursor.execute('INSERT INTO usuarios VALUES(...) )
+    cursor.connection.commit()
+```
+
+## request
+
+Con el objeto `request` se pueden recuperar los datos que por ejemplo se envían mediante formularios, para esto es necesario importarlo y luego acceder a los inputs del formulario. Es importante que en la declaración de la ruta de habiliten lo métodos HTTP que sean necesarios
+
+```python
+from flask import request
+
+@app.route('/crear-usuario', methods=['GET', 'POST'])
+def crear_usuario():
+    if request.method == 'POST':
+        nombre_usuario = request.form['nombre_usuario']
+        edad_usuario = request.form['edad_usuario']
+        cursor = mysql.connection.cursor()
+        cursor.execute('INSERT INTO usuarios VALUES(...) )
+        cursor.connection.commit()
+        return redirect(url_for('home'))
+```
+
+## Mensajes flash
