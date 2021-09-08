@@ -292,8 +292,36 @@ En la ruta donde se interactua con la db, se crea un cursor instanciando al mét
 @app.route('/crear-usuario')
 def crear_usuario():
     cursor = mysql.connection.cursor()
-    cursor.execute('INSERT INTO usuarios VALUES(...) )
+    cursor.execute('INSERT INTO usuarios VALUES(...)')
     cursor.connection.commit()
+```
+
+#### SELECT * FROM
+
+Si se realizar un query para obtener datos de la BD se ejecuta el método `fetchall()` para recuperar todos los datos del cursor (`fetchone()` para recuperar sólo uno), y finalmente como buena práctica se cierra el cursor con el método `close()`
+
+```python
+@app.route('/usuarios')
+def obtener_usuarios():
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * FROM usuarios')
+    usuarios = cursor.fetchall()
+    cursor.close()
+
+    return render_template('usuarios.html', usuarios=usuarios)
+```
+
+- Para acceder a los datos de los usuarios dentro de la plantilla se accede mediante números enteros, empezando desde 0, y no el nombre del campo/columna
+  
+```html
+<h1>Usuarios</h1>
+<ul>
+{% for usuario in usuarios %}
+    <li>usuario.0</li>
+    <li>usuario.1</li>
+    <li>usuario.2</li>
+{% endfor %}
+</ul>
 ```
 
 ## request
@@ -315,3 +343,42 @@ def crear_usuario():
 ```
 
 ## Mensajes flash
+
+Los flash de Flask permiten crear mensajes que tienen una vida de una sesión
+
+- Se importa desde flask
+
+```python
+from flask import flash
+...
+
+- En la ruta que se desee mostrar el mensaje se usa el método `flash()` cuyo argumento es el mensaje
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    flash("Bienvenido")
+    return render_template('index.html')
+```
+
+- En la plantilla que se renderizará para la ruta se declara la variable, en este caso `message`, con el contenido de la `función get_flashed_messages()` y se itera sobre estos
+
+```html
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div>
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+```
+
+- ⚠️ Es necesario crear una clave secreta para la sesión
+
+```python
+app = Flask(__name__)
+app.secret_key = 'secret_key_flask'
+```
+
+**by** _Andrés Camilo Núñez Garzón_
